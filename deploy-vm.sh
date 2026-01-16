@@ -9,7 +9,6 @@ RG="AZ104"
 VNET_NAME="VNet-Lab-Test"
 SUBNET_NAME="Back-end"
 SUBSCRIPTION_ID="ce0de1ad-a39c-428d-ad59-388ff424ab35"
-LOCATION="westeurope"
 SUBNET_ID="/subscriptions/ce0de1ad-a39c-428d-ad59-388ff424ab35/resourceGroups/AZ104/providers/Microsoft.Network/virtualNetworks/VNet-Lab-Test/subnets/Back-end"
 TAGS="env=lab owner=corantin"
 
