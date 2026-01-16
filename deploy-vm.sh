@@ -10,7 +10,8 @@ SUBSCRIPTION_ID="ce0de1ad-a39c-428d-ad59-388ff424ab35"
 
 # Ressources réseau
 RG="AZ104"
-LOCATION="francecentral"
+RG_LOCATION="westeurope"    
+VNET_LOCATION="francecentral" 
 VNET_NAME="VNet-Lab-Test"
 SUBNET_NAME="Back-end"
 ADDRESS_PREFIX="10.0.0.0/16"
@@ -32,25 +33,22 @@ az account set --subscription "$SUBSCRIPTION_ID"
 
 # Resource Group
 
-echo "Création / vérification du Resource Group : $RG ($LOCATION)"
+# Création / vérification du RG (en westeurope, comme à l’origine)
 az group create \
   --name "$RG" \
-  --location "$LOCATION" \
+  --location "$RG_LOCATION" \
   >/dev/null
 
-
-# VNet + Subnet
-
-echo "Création / vérification du VNet + Subnet : $VNET_NAME / $SUBNET_NAME"
-
+# Création du VNet en francecentral
 az network vnet create \
   --resource-group "$RG" \
   --name "$VNET_NAME" \
-  --location "$LOCATION" \
+  --location "$VNET_LOCATION" \
   --address-prefixes "$ADDRESS_PREFIX" \
   --subnet-name "$SUBNET_NAME" \
   --subnet-prefixes "$SUBNET_PREFIX" \
   >/dev/null
+
 
 echo "Récupération de l'ID du subnet..."
 SUBNET_ID=$(az network vnet subnet show \
@@ -94,4 +92,4 @@ az vm create \
   --tags "$TAGS"
 
 echo "Déploiement terminé ✅"
-echo "VM : $VM_NAME dans le RG : $RG, région : $LOCATION"
+
