@@ -31,14 +31,6 @@ echo "Sélection de la subscription : $SUBSCRIPTION_ID"
 az account set --subscription "$SUBSCRIPTION_ID"
 
 
-# Resource Group
-
-# Création / vérification du RG (en westeurope, comme à l’origine)
-az group create \
-  --name "$RG" \
-  --location "$RG_LOCATION" \
-  >/dev/null
-
 # Création du VNet en francecentral
 az network vnet create \
   --resource-group "$RG" \
